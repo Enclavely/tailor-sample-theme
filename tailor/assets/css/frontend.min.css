@@ -1,0 +1,8 @@
+.tailor-ui .tailor-custom-wrapper {
+  padding: 2em;
+  border: 2px solid #ccc;
+}
+
+.tailor-ui .tailor-custom-wrapper h2 {
+  font-style: italic;
+}

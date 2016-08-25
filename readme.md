@@ -4,7 +4,7 @@ This modified version of the Twenty Sixteen theme for WordPress is intended to b
 
 ## Features
 
-This extension:
+This theme:
 
 1. Registers a new custom content element.
 2. Registers a new custom wrapper element (including custom JavaScript view).

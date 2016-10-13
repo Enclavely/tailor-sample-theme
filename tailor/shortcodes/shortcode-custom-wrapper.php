@@ -23,19 +23,30 @@ if ( ! function_exists( 'tailor_shortcode_custom_wrapper_element' ) ) {
 	    $class = trim( esc_attr( "tailor-element tailor-custom-wrapper {$atts['class']}" ) );
 	    
 	    // Do something with the element settings
-	    $html = '<div ' . trim( "{$id} class=\"{$class}\"" ) . '>';
-
+	    $inner_html = '';
+	    
 	    if ( ! empty( $atts['title'] ) ) {
-		    $html .= '<h2>' . esc_attr( $atts['title'] ) . '</h2>';
+		    $inner_html .= '<h2>' . esc_attr( $atts['title'] ) . '</h2>';
 	    }
 
 	    if ( ! empty( $atts['description'] ) ) {
-		    $html .= '<p>' . esc_attr( $atts['description'] ) . '</p>';
+		    $inner_html .= '<p>' . esc_attr( $atts['description'] ) . '</p>';
 	    }
+	    
+	    $inner_html .= '<div class="tailor-custom-wrapper__content">' . do_shortcode( $content ) .'</div>';
 
-	    $html .= '<div class="tailor-custom-wrapper__content">' . do_shortcode( $content ) .'</div>';
+	    $outer_html = '<div ' . trim( "{$id} class=\"{$class}\"" ) . '>%s</div>';
 
-	    return $html . '</div>';
+	    /**
+	     * Filter the HTML for the element.
+	     *
+	     * @param string $outer_html
+	     * @param string $inner_html
+	     * @param array $atts
+	     */
+	    $html = apply_filters( 'tailor_shortcode_custom_wrapper_html', sprintf( $outer_html, $inner_html ), $outer_html, $inner_html, $atts );
+
+	    return $html;
     }
 
     add_shortcode( 'tailor_custom_wrapper', 'tailor_shortcode_custom_wrapper_element' );

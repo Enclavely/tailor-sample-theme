@@ -467,7 +467,7 @@ function tailor_register_custom_element( $element_manager ) {
 	);
 
 	// If your custom wrapper, container or child has a custom child view container, you will need to create extend
-	// the default 
+	// the default
 	$element_manager->add_element( 'tailor_custom_wrapper', array(
 		'label'             =>  __( 'Custom wrapper' ),
 		'description'       =>  __( 'A custom wrapper element' ),
@@ -494,6 +494,42 @@ add_action( 'tailor_register_elements', 'tailor_register_custom_element' );
 
 
 /**
+ * Removes some default elements.
+ *
+ * @param Tailor_Elements $element_manager
+ */
+function tailor_remove_default_elements( $element_manager ) {
+	$element_manager->remove_element( 'tailor_box' );
+}
+
+add_action( 'tailor_register_elements', 'tailor_remove_default_elements' );
+
+
+/**
+ * Loads the custom panel definition.
+ */
+function tailor_load_custom_panel() {
+	include trailingslashit( get_template_directory() ) . 'tailor/panels/class-panel-custom.php';
+}
+
+add_action( 'tailor_load_panels', 'tailor_load_custom_panel', 20 );
+
+/**
+ * Registers the custom panel.
+ *
+ * @param $panel_manager Tailor_Panels
+ */
+function tailor_register_custom_panel( $panel_manager ) {
+	$panel_manager->add_panel( new Tailor_Custom_Panel( 'custom_panel', array(
+		'title'                 =>  __( 'Custom', 'tailor' ),
+		'description'           =>  __( 'This is a custom panel description.', 'tailor' ),
+		'priority'              =>  40,
+	) ) );
+
+}
+add_action( 'tailor_register_panels', 'tailor_register_custom_panel', 20 );
+
+/**
  * Registers custom views and behaviors
  */
 function tailor_add_custom_views() {
@@ -507,8 +543,6 @@ function tailor_add_custom_views() {
 }
 
 add_action( 'tailor_canvas_enqueue_scripts', 'tailor_add_custom_views', 99 );
-
-
 
 /**
  * Registers custom styles
@@ -607,3 +641,30 @@ function tailor_modify_button_icon_control( $control_args, $button_element ) {
 }
 
 add_action( 'tailor_control_args_tailor_button_icon', 'tailor_modify_button_icon_control', 10, 2 );
+
+
+/**
+ * Modifies the default colorpicker palettes.
+ *
+ * @param array $control_args
+ *
+ * @return array $control_args
+ */
+function tailor_modify_colorpicker( $control_args ) {
+
+	$control_args['palettes'] = array(
+		'#4ecdc4',
+		'#c7f464',
+		'#ff6b6b',
+		'#c44d58',
+		'#ecca2e',
+		'#bada55',
+	);
+
+	return $control_args;
+}
+
+add_action( 'tailor_control_args_colorpicker', 'tailor_modify_colorpicker' );
+
+// Save post content as shortcodes instead of HTML
+//add_filter( 'tailor_save_content_as_html', '__return_false' );

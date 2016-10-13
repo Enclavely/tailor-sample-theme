@@ -21,3 +21,19 @@ If you have questions about how to extend Tailor or would like to see an example
 1. [Facebook](https://www.facebook.com/tailorwp/)
 2. [Twitter](https://twitter.com/tailorwp)
 3. The [Help Center](http://support.gettailor.com)
+
+## Changelog
+
+### 1.0.1
+
+Added - Filter to modify the rendered HTML of a given element.
+Added - Example of adding custom panel.
+Added - Example of removing a default element.
+Added - Example of modifying color palette in colorpicker control.
+Improved - The selector for element child containers can now be specified when registering the element.
+
+Note: this version supports Tailor 1.6.0 and above.
+
+### 1.0.0
+
+Initial version

@@ -23,17 +23,17 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Custom_Content_
 	    protected function register_controls() {
 		    
 		    $this->add_section( 'general', array(
-			    'title'                 =>  __( 'General', 'tailor-portfolio' ),
+			    'title'                 =>  __( 'General' ),
 			    'priority'              =>  10,
 		    ) );
 
 		    $this->add_section( 'colors', array(
-			    'title'                 =>  __( 'Colors', 'tailor-portfolio' ),
+			    'title'                 =>  __( 'Colors' ),
 			    'priority'              =>  30,
 		    ) );
 
 		    $this->add_section( 'attributes', array(
-			    'title'                 =>  __( 'Attributes', 'tailor-portfolio' ),
+			    'title'                 =>  __( 'Attributes' ),
 			    'priority'              =>  40,
 		    ) );
 
@@ -45,7 +45,7 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Custom_Content_
 			    'default'               =>  'The default value for setting 1',
 		    ) );
 		    $this->add_control( 'setting_1', array(
-			    'label'                 =>  __( 'Setting 1', 'tailor-portfolio' ),
+			    'label'                 =>  __( 'Setting 1', '' ),
 			    'type'                  =>  'text',
 			    'section'               =>  'general',
 			    'priority'              =>  $priority += 10,
@@ -54,9 +54,43 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Custom_Content_
 		    $this->add_setting( 'setting_2', array(
 			    'sanitize_callback'     =>  'tailor_sanitize_text',
 		    ) );
-		    $this->add_control( 'setting_2', array(
-			    'label'                 =>  __( 'Setting 2', 'tailor-portfolio' ),
-			    'type'                  =>  'text',
+		    $this->add_control( 'my_colorpicker', array(
+			    'label'                 =>  __( 'My colorpicker' ),
+			    'type'                  =>  'colorpicker',
+			    'palettes'              =>  array(
+				    '#556270',
+				    '#4ecdc4',
+				    '#c7f464',
+				    '#ff6b6b',
+				    '#c44d58',
+				    '#ecca2e',
+				    '#bada55',
+			    ),
+			    'section'               =>  'general',
+			    'priority'              =>  $priority += 10,
+		    ) );
+
+		    // Add as many custom settings as you like..
+		    $this->add_setting( 'editor', array(
+			    'sanitize_callback'     =>  'tailor_sanitize_html',
+		    ) );
+		    $this->add_control( 'editor', array(
+			    'type'                  =>  'editor',
+			    'priority'              =>  $priority += 10,
+			    'section'               =>  'general',
+		    ) );
+
+		    $this->add_setting( 'range', array(
+			    'sanitize_callback'     =>  'tailor_sanitize_number ',
+		    ) );
+		    $this->add_control( 'range', array(
+			    'label'                 =>  __( 'Range control', 'text-domain' ),
+			    'type'                  =>  'range',
+			    'input_attrs'           =>  array(
+				    'min'                   =>  10,
+				    'max'                   =>  100,
+				    'step'                  =>  10,
+			    ),
 			    'section'               =>  'general',
 			    'priority'              =>  $priority += 10,
 		    ) );

@@ -3,9 +3,9 @@
 
     'use strict';
 
-	// Register the custom wrapper views
 	app.on( 'before:start', function() {
-		Views.CustomWrapper = require( './components/elements/wrappers/custom' );
+		
+		// Register the views, behaviours etc..
 	} );
 
 	// Do something when the element renders

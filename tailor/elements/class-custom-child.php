@@ -23,17 +23,17 @@ if ( class_exists( 'Tailor_Element' ) && ! class_exists( 'Tailor_Custom_Child_El
 	    protected function register_controls() {
 		    
 		    $this->add_section( 'general', array(
-			    'title'                 =>  __( 'General', 'tailor-portfolio' ),
+			    'title'                 =>  __( 'General' ),
 			    'priority'              =>  10,
 		    ) );
 
 		    $this->add_section( 'colors', array(
-			    'title'                 =>  __( 'Colors', 'tailor-portfolio' ),
+			    'title'                 =>  __( 'Colors' ),
 			    'priority'              =>  30,
 		    ) );
 
 		    $this->add_section( 'attributes', array(
-			    'title'                 =>  __( 'Attributes', 'tailor-portfolio' ),
+			    'title'                 =>  __( 'Attributes' ),
 			    'priority'              =>  40,
 		    ) );
 

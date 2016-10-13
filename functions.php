@@ -558,26 +558,6 @@ function tailor_add_custom_styles() {
 
 add_action( 'wp_enqueue_scripts', 'tailor_add_custom_styles' );
 
-
-
-/**
- * Modifies default section elements.
- *
- * @param Tailor_Section_Element $section_element
- */
-function tailor_modify_section( $section_element ) {
-
-	// Get the section class name setting
-	$style_setting = $section_element->get_setting( 'class' );
-
-	// Set the default value to 'u-full-width' to have sections display full width
-	$style_setting->default = 'u-full-width';
-}
-
-add_action( 'tailor_element_register_controls_tailor_section', 'tailor_modify_section' );
-
-
-
 /**
  * Modifies default button elements.
  *
